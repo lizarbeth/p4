@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2022 at 03:21 AM
+-- Generation Time: Nov 13, 2022 at 04:31 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 -- Database: `friend`
 --
 CREATE DATABASE friend;
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +48,13 @@ CREATE TABLE `posts` (
   `postID` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`postText`, `user`, `date`, `time`, `postID`) VALUES
+('This is my first post.', 'lizarbeth', '2022-11-12', '09:08:45', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -63,6 +71,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`username`, `firstName`, `lastName`, `password`, `email`, `count`) VALUES
+('lizarbeth', 'Elisabeth', 'McMichael', 'LiZarBeth123!!', 'c00432278@louisiana.edu', 1),
+('blueberry21', 'Lavender', 'Gooms', 'blackANDtan', 'lg21@gmail.com', 2);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -70,13 +86,15 @@ CREATE TABLE `users` (
 -- Indexes for table `friends`
 --
 ALTER TABLE `friends`
-  ADD PRIMARY KEY (`user1`,`user2`);
+  ADD PRIMARY KEY (`user1`,`user2`),
+  ADD KEY `FK2` (`user2`);
 
 --
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
-  ADD PRIMARY KEY (`postID`);
+  ADD PRIMARY KEY (`postID`),
+  ADD KEY `FK` (`user`);
 
 --
 -- Indexes for table `users`
@@ -94,15 +112,33 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `postID` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `postID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `count` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `count` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `friends`
+--
+ALTER TABLE `friends`
+  ADD CONSTRAINT `FK1` FOREIGN KEY (`user1`) REFERENCES `users` (`username`),
+  ADD CONSTRAINT `FK2` FOREIGN KEY (`user2`) REFERENCES `users` (`username`);
+
+--
+-- Constraints for table `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `FK` FOREIGN KEY (`user`) REFERENCES `users` (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
