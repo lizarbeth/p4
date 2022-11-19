@@ -1,0 +1,8 @@
+div.col-sm-1.pt-5.mt-5 > img{
+    width: 100px;
+}
+
+div.col-sm-4.pt-5.mt-5 > p{
+    text-align: justify;
+    margin: auto;
+}
