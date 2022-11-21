@@ -1,3 +1,114 @@
+body {
+    background: #caf0f8 url("diagonal-waves.png") repeat;
+    font-family: 'Fauna One', serif;
+    font-size: 16px;
+}
+
+#top {
+    background-color: #03045E;
+    box-shadow: 0px 10px 10px black;
+}
+#heading {
+    background-color: rgba(0, 119, 182, .6);
+    font-family: Cinzel, serif;
+    color: #1c228c;
+    font-size: 50px;
+    box-shadow: 0px -10px 10px black inset;
+}
+#heading h1 {
+    font-size:38px;
+    color: #060938;
+}
+
+.offcanvas {
+    visibility: visible;
+}
+
+.btn {
+    color: rgba(255,255,255,.55);
+}
+.offcanvas-header {
+    background-color: #03045E;
+    box-shadow: 0px 10px 10px black;
+    color: rgba(255,255,255,.55);
+}
+
+.offcanvas-body {
+    background: #0077B6 url("diagonal-waves.png") repeat;
+}
+#offcanvasRightLabel {
+    color: rgba(255,255,255,.55);
+}
+#loginbox {
+    width: 18rem;
+    background-color: #CAF0F8;
+    border: 2px solid #03045E;
+    border-radius: 5px;
+}
+#adduserloginbox {
+    width: 24rem;
+    background-color: #CAF0F8;
+    border: 2px solid #03045E;
+    border-radius: 5px;
+}
+
+.submitbtn {
+    background: #CAF0F8 url("diagonal-waves.png") repeat;
+    border: 2px solid #03045E;
+    border-radius: 5px;
+}
+#profilepic {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    border-width: 10px;
+}
+.fa-ul li a {
+    font-size: 36px;
+    color: #CAF0F8;
+    margin-left: 1em;
+    text-decoration: none;
+}
+button i {
+    --fa-border-radius: 100%;
+    --fa-border-padding: 8px;
+    --fa-border-color: rgba(255,255,255,.55);
+    --fa-pull-margin: 4px;
+}
+.card-body, .card-footer {
+    background-color: #CAF0F8;
+}
+.col i {
+    color: rgba(0, 0, 255, 0.5);
+    --fa-inverse: #0077B6;
+}
+#maincard {
+    background-color: rgba(0, 119, 182, .6);
+    box-shadow: 10px -10px 15px black inset, -10px 10px 15px black inset;
+    border-radius: 15px;
+    display: inline;
+}
+#profilecard {
+    background-color: rgba(0, 119, 182, .6);
+    border-radius: 15px;
+    display: inline;
+}
+
+#xmark {
+    color: #CAF0F8;
+}
+#z {
+    z-index: 1100;
+    text-align: center;
+    position: absolute;
+    left: 42%;
+    top: 1%;
+}
+#z a img {
+    height: 60px;
+    width: auto;
+    text-align: center;
+}
+
 div.col-sm-1.pt-5.mt-5 > img{
     width: 100px;
 }
