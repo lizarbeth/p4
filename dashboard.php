@@ -20,44 +20,19 @@
         //for user box on the side
     $userDetails = $db->query("SELECT username, firstName, lastName, pic FROM users"); //WHERE username == $user
     $users = $userDetails->fetch_assoc();
-     
-    //$postDetails = $db->query("SELECT postText, u.firstName, u.lastName, date, time, u.username
-                                //FROM users u JOIN posts p ON u.username=p.user");
 
-    $postDetails = $db->query("SELECT friendship, user1, user2, p.postText, p.user, p.date, p.time  
-                            FROM friends f JOIN users uo ON f.user1=uo.username 
-                            JOIN users ut ON f.user2=ut.username 
-                            JOIN posts p ON f.user2=p.user 
-                            WHERE friendship=1");
-
-    /*$friendStatus = $db->query("SELECT * FROM friends WHERE (user1='lizarbeth' OR user2='lizarbeth')
-                                    AND friendship=1");
-    while($friendInfo = $friendStatus->fetch_assoc()){
-        $user1 = $friendInfo['user1'];
-        $user2 = $friendInfo['user2'];
-        $friendship = $friendInfo['friendship'];
-        //echo $user1;
-        //echo $user2;
-    }
-        $friendPosts = $db->query("SELECT * FROM posts WHERE (user='$user1' OR user='$user2')");
-        while($friendPostsResults = $friendPosts->fetch_assoc()){
-            $text = $friendPostsResults['postText'];
-            $user = $friendPostsResults['user'];
-            $date = $friendPostsResults['date'];
-            $time = $friendPostsResults['time'];
-            if($user=='lizarbeth'){
-
-            }
+    $postDetails = $db->query("SELECT p.postText, p.user, p.date, p.time, p.likeCount  
+                                FROM posts p JOIN users u on u.username=p.user
+                                WHERE p.user IN (SELECT user1 FROM friends WHERE user2='lizarbeth')
+                                OR p.user IN (SELECT user2 FROM friends WHERE user1='lizarbeth')
+                                OR (p.user='lizarbeth')");
     
-    echo $text;
-            echo "<br>";
-            echo $user;
-            echo "<br>";
-            echo $date;
-            echo "<br>";
-            echo $time;
-            echo "<br>";
-    }*/
+    //like button function
+    if(isset($_POST['count'])){
+        // grab post id and count for that post
+        // count += 1
+        // UPDATE likeCOUNT to new count
+    }
     
 
     while($posts = $postDetails->fetch_assoc()){
@@ -69,11 +44,7 @@
 
     $count = $db->query("SELECT COUNT(postID) FROM posts WHERE user='lizarbeth'");
     $countPosts = $count->fetch_column();
-    
 
-    //display own user posts and posts from friends
-    // $user = $_SESSION['username'];
-    //if username == $user && 
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +54,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="dashboard.css" rel="stylesheet" type="text/css">
-        <title>Watering Hole</title>
+        <title>The Watering Hole</title>
     </head>
     <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -117,17 +88,24 @@
                         <p> username: <?=$row["user"];?> </p>
                         <p> post text: <?=$row['postText'];?> </p>
                         <p> date posted: <?=$row['date'];?> </p>
-                        <p> time posted: <?=$row['time'];?> </p> 
+                        <p> time posted: <?=$row['time'];?> </p>
+                        <form class="likeButton" action="dashboard.php" method="POST">
+                            <input type="hidden" name="count">
+                            <button type="submit">LIKE</button>
+                            <label for="button">likes: <?=$row['likeCount']?></label>
+                        </form>
                         <p> ------------------------- </p>
-                        <?php } ?>
+                    <?php 
+                        if(isset($_POST['count'])){
+                            $likes = $row['likeCount'];
+
+                        }
+                    } ?>
 
                     <?php  
                     //display post information ?>
             </div> 
             </div>
         </div> 
-
-
-
     </body>
 </html>
