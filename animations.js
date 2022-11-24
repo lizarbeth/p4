@@ -1,4 +1,12 @@
 window.onload = function () {
+
+    document.getElementById("replyiconlisten").addEventListener("click",replyFunction)
+
+    var bottle = document.getElementById("bottleiconlisten");
+    bottle.addEventListener("click",bottleiconfunction)
+
+    document.getElementById("dropleticonlisten").addEventListener("click",dropleticonfunction)
+
     var gear = document.getElementById("gear");
     gear.addEventListener("mouseover",gearfunction)
     gear.addEventListener("mouseout",gearfunctionout)
@@ -68,4 +76,17 @@ function homefunctionout() {
     x.classList.remove("fa-beat");
     var y =document.getElementById("home");
     y.classList.remove("card");
+}
+
+function replyFunction() {
+    var x = document.getElementById("replyiconin");
+    x.classList.toggle("iconchange");
+}
+function bottleiconfunction() {
+    var x = document.getElementById("bottleiconin");
+    x.classList.toggle("iconchange");
+}
+function dropleticonfunction() {
+    var x = document.getElementById("dropleticonin");
+    x.classList.toggle("iconchange");
 }
