@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2022 at 07:58 PM
+-- Generation Time: Nov 24, 2022 at 03:27 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -20,9 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `friend`
 --
-
 CREATE DATABASE friend;
-
 -- --------------------------------------------------------
 
 --
@@ -33,8 +31,18 @@ CREATE TABLE `comments` (
   `postID` int(50) NOT NULL,
   `commenter` varchar(50) NOT NULL,
   `commentText` text NOT NULL,
-  `commentID` int(10) NOT NULL
+  `commentID` int(10) NOT NULL,
+  `time` time NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`postID`, `commenter`, `commentText`, `commentID`, `time`, `date`) VALUES
+(10, 'blueberry21', 'ME TOO!!!!', 1, '04:26:45', '2022-11-23'),
+(1, 'sharkgirl', 'cool. thanks for sharing.', 2, '00:00:00', '2022-11-23');
 
 -- --------------------------------------------------------
 
@@ -68,6 +76,36 @@ CREATE TABLE `likes` (
   `likeID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `likes`
+--
+
+INSERT INTO `likes` (`postID`, `liker`, `likeID`) VALUES
+(16, 'blueberry21', 1),
+(16, 'lizarbeth', 2),
+(10, 'blueberry21', 3),
+(10, 'hydrobro1995', 4),
+(10, 'lizarbeth', 5),
+(10, 'sharkgirl', 6),
+(4, 'lizarbeth', 7),
+(15, 'sharkgirl', 8),
+(1, 'lizarbeth', 18),
+(2, 'lizarbeth', 19),
+(3, 'lizarbeth', 20),
+(4, 'lizarbeth', 21),
+(11, 'lizarbeth', 22),
+(14, 'lizarbeth', 23),
+(15, 'lizarbeth', 24),
+(16, 'lizarbeth', 25),
+(17, 'lizarbeth', 26),
+(17, 'lizarbeth', 27),
+(17, 'lizarbeth', 28),
+(17, 'lizarbeth', 29),
+(17, 'lizarbeth', 30),
+(17, 'lizarbeth', 31),
+(17, 'lizarbeth', 32),
+(17, 'lizarbeth', 33);
+
 -- --------------------------------------------------------
 
 --
@@ -77,26 +115,28 @@ CREATE TABLE `likes` (
 CREATE TABLE `posts` (
   `postText` longtext NOT NULL,
   `user` varchar(50) NOT NULL,
-  `date` date NOT NULL,
-  `time` time NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp(),
+  `time` time NOT NULL DEFAULT current_timestamp(),
   `postID` int(50) NOT NULL,
-  `likeCount` int(11) NOT NULL DEFAULT 0
+  `likeCount` int(11) NOT NULL DEFAULT 0,
+  `commentCount` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`postText`, `user`, `date`, `time`, `postID`, `likeCount`) VALUES
-('This is my first post.', 'lizarbeth', '2022-11-12', '09:08:45', 1, 2),
-('Status update: currently at work (for once)', 'blueberry21', '2022-11-16', '03:13:19', 2, 1),
-('hello', 'lizarbeth', '2022-11-16', '10:37:04', 3, 0),
-('I\'m available to chat :-)', 'lizarbeth', '2022-11-16', '10:39:16', 4, 0),
-('I LOVE WATER!!!!!!!!', 'hydrobro1995', '2022-11-17', '12:48:25', 10, 3),
-('I love posting on here', 'lizarbeth', '2022-11-17', '07:48:58', 11, 1),
-('this is another test post :-)', 'lizarbeth', '2022-11-17', '07:54:24', 14, 0),
-('this is another test post :-)', 'lizarbeth', '2022-11-17', '07:54:44', 15, 0),
-('Hi, I\'m new here my name is Shark Girl', 'sharkgirl', '2022-11-17', '05:29:56', 16, 2);
+INSERT INTO `posts` (`postText`, `user`, `date`, `time`, `postID`, `likeCount`, `commentCount`) VALUES
+('This is my first post.', 'lizarbeth', '2022-11-12', '09:08:45', 1, 1, 1),
+('Status update: currently at work (for once)', 'blueberry21', '2022-11-16', '03:13:19', 2, 1, 0),
+('hello', 'lizarbeth', '2022-11-16', '10:37:04', 3, 1, 0),
+('I\'m available to chat :-)', 'lizarbeth', '2022-11-16', '10:39:16', 4, 2, 0),
+('I LOVE WATER!!!!!!!!', 'hydrobro1995', '2022-11-17', '12:48:25', 10, 4, 1),
+('I love posting on here', 'lizarbeth', '2022-11-17', '07:48:58', 11, 1, 0),
+('this is another test post :-)', 'lizarbeth', '2022-11-17', '07:54:24', 14, 1, 0),
+('this is another test post :-)', 'lizarbeth', '2022-11-17', '07:54:44', 15, 2, 0),
+('Hi, I\'m new here my name is Shark Girl', 'sharkgirl', '2022-11-17', '05:29:56', 16, 3, 0),
+('test post', 'lizarbeth', '2022-11-23', '00:00:00', 17, 8, 0);
 
 -- --------------------------------------------------------
 
@@ -174,19 +214,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `commentID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `postID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `postID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users`
