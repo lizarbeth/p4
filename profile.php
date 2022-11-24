@@ -158,9 +158,9 @@ if ($mysqli->connect_error) {
                         </div>
                         <div class="card-footer border-top-0">
                             <div class="row">
-                                <div class="col"><span id="replyiconlisten"><i class="fa-solid fa-reply" id="replyiconin"></i></span> 60k</div>
-                                <div class="col"><span id="bottleiconlisten"><i class="fa-solid fa-bottle-water" id="bottleiconin"></i></span> 60k</div>
-                                <div class="col"><span id="dropleticonlisten"><i class="fa-solid fa-droplet" id="dropleticonin"></i></span></div>
+                                <div class="col"><span id="replyiconlisten"><i class="fa-solid fa-reply colorone" id="replyiconin"></i></span> 60k</div>
+                                <div class="col"><span id="bottleiconlisten"><i class="fa-solid fa-bottle-water colortwo" id="bottleiconin"></i></span> 60k</div>
+                                <div class="col"><span id="dropleticonlisten"><i class="fa-solid fa-droplet colorone" id="dropleticonin"></i></span></div>
                             </div>
                         </div>
                     </div>
