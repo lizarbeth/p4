@@ -141,13 +141,21 @@ button i {
 .card-body, .card-footer {
     background-color: #CAF0F8;
 }
-.col i {
-    color: grey;
-}
-.iconchange {
-    color: #0077B6;
-}
+.colorone {
+    color: darkgray;
+    --fa-animation-iteration-count: 1;
+    --fa-animation-duration: 500ms;
+    --fa-animation-timing: ease-out;
+    --fa-beat-scale: 1.5;
 
+}
+.colortwo {
+    color: #0077B6;
+    --fa-animation-iteration-count: 1;
+    --fa-animation-duration: 500ms;
+    --fa-animation-timing: ease-out;
+    --fa-beat-scale: 1.5;
+}
 #maincard {
     background-color: rgba(0, 119, 182, .6);
     box-shadow: 10px -10px 15px black inset, -10px 10px 15px black inset;
