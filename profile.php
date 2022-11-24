@@ -55,10 +55,10 @@ if ($mysqli->connect_error) {
 
                         <div class="offcanvas-body">
                             <ol class="fa-ul p-5">
-                                <li id="home" class="container my-1 p-2"><a href="home.php"><span class="fa-li"><i class="fa-solid fa-house-flood-water" id="homein"></i></span>Home</a></li>
-                                <li id="profile" class="container my-1 p-2"><a href="profile.php"><span class="fa-li"><i class="fa-solid fa-book-open-reader" id="profilein"></i></span>Profile</a></li>
-                                <li id="drop" class="container my-1 p-2"><a href="#"><span class="fa-li"><i class="fa-solid fa-droplet" id="dropin"></i></span>Drops</a></li>
-                                <li id="gear" class="container my-1 p-2"><a href="#"><span class="fa-li"><i class="fa-solid fa-gear" id="gearin"></i></span>Settings</a></li>
+                                <li id="home" class="container my-1 p-2"><a class="linkdecorationrm" href="home.php"><span class="fa-li"><i class="fa-solid fa-house-flood-water" id="homein"></i></span>Home</a></li>
+                                <li id="profile" class="container my-1 p-2"><a class="linkdecorationrm" href="profile.php"><span class="fa-li"><i class="fa-solid fa-book-open-reader" id="profilein"></i></span>Profile</a></li>
+                                <li id="drop" class="container my-1 p-2"><a class="linkdecorationrm" href="#"><span class="fa-li"><i class="fa-solid fa-droplet" id="dropin"></i></span>Drops</a></li>
+                                <li id="gear" class="container my-1 p-2"><a class="linkdecorationrm" href="#"><span class="fa-li"><i class="fa-solid fa-gear" id="gearin"></i></span>Settings</a></li>
                             </ol>
 
                         </div>
@@ -101,12 +101,8 @@ if ($mysqli->connect_error) {
     </div>
 
 
-    <div class="p-5 text-white text-center" id="heading">
-        <h1><strong>Profile</strong></h1>
-    </div>
 
-
-    <div class="container-fluid card m-2 p-2">
+    <div class="m-5 card p-2 d-flex justify-content-center">
 
         <ul class="nav nav-tabs nav-justified" role="tablist">
 
@@ -152,65 +148,43 @@ if ($mysqli->connect_error) {
             </div>
 
             <div class="tab-pane container fade" id="bottles"><br>
-                <div class="container p-5">
-                    <div class="card my-2">
+                <div class="container-fluid p-5 ">
 
+                    <!-- Template for liked comments-->
+                    <div class="card my-2 d-flex justify-content-center">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fa-solid fa-user fa-xl" id="profilepic"></i> User347592<span class="fs-6 blockquote-footer my-1">Posted x ago</span></h5>
                             <p>Welcome to the Watering Hole!</p>
                         </div>
                         <div class="card-footer border-top-0">
                             <div class="row">
-                                <div class="col"><i class="fa-solid fa-reply fa-inverse"></i> 60k</div>
-                                <div class="col"><i class="fa-solid fa-bottle-water"></i> 60k</div>
-                                <div class="col"><i class="fa-solid fa-droplet fa-inverse"></i></div>
+                                <div class="col"><span id="replyiconlisten"><i class="fa-solid fa-reply" id="replyiconin"></i></span> 60k</div>
+                                <div class="col"><span id="bottleiconlisten"><i class="fa-solid fa-bottle-water" id="bottleiconin"></i></span> 60k</div>
+                                <div class="col"><span id="dropleticonlisten"><i class="fa-solid fa-droplet" id="dropleticonin"></i></span></div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
 
             <div class="tab-pane container fade" id="drops"><br>
                 <div class="container p-5">
-                    <div class="card my-2">
-
-                        <div class="card-body">
-
-                            <h5 class="card-title"><i class="fa-solid fa-user fa-xl" id="profilepic"></i> User347592<span class="fs-6 blockquote-footer my-1">Posted x ago</span></h5>
-
-                            <p>Welcome to the Watering Hole!</p>
-                        </div>
-                        <div class="card-footer border-top-0">
-                            <div class="row">
-                                <div class="col"><i class="fa-solid fa-reply fa-inverse"></i> 60k</div>
-                                <div class="col"><i class="fa-solid fa-bottle-water"></i> 60k</div>
-                                <div class="col"><i class="fa-solid fa-droplet fa-inverse"></i></div>
-                            </div>
-                        </div>
+                    <div class="d-flex justify-content-center fadedmessage">
+                        <h2><i class="fa-regular fa-face-sad-tear fa-5x d-flex justify-content-center m-2"></i>You're Out of Drops!</h2>
                     </div>
 
-                    <div class="card my-2">
-
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="fa-solid fa-user fa-xl" id="profilepic"></i> User347592<span class="fs-6 blockquote-footer my-1">Posted x ago</span></h5>
-                            <p>Welcome to the Watering Hole!</p>
-                        </div>
-                        <div class="card-footer border-top-0">
-                            <div class="row">
-                                <div class="col"><i class="fa-solid fa-reply"></i> 60k</div>
-                                <div class="col"><i class="fa-solid fa-bottle-water"></i> 60k</div>
-                                <div class="col"><i class="fa-solid fa-droplet fa-inverse"></i></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <footer class="container-fluid mt-5 p-4 text-white text-center">
+        <h6 >Water Fanatics Inc.</h6>
+        <a class="linkdecorationrm" href="wiki/home.php">Like water? Learn more on our Wiki!</a>
+    </footer>
+
 </body>
-
-
 
 </html>
