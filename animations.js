@@ -2,8 +2,7 @@ window.onload = function () {
 
     document.getElementById("replyiconlisten").addEventListener("click",replyFunction)
 
-    var bottle = document.getElementById("bottleiconlisten");
-    bottle.addEventListener("click",bottleiconfunction)
+    document.getElementById("bottleiconlisten").addEventListener("click",bottleiconfunction)
 
     document.getElementById("dropleticonlisten").addEventListener("click",dropleticonfunction)
 
@@ -80,13 +79,21 @@ function homefunctionout() {
 
 function replyFunction() {
     var x = document.getElementById("replyiconin");
-    x.classList.toggle("iconchange");
+    x.classList.toggle("colorone");
+    x.classList.toggle("colortwo");
+    x.classList.toggle("fa-beat");
 }
 function bottleiconfunction() {
     var x = document.getElementById("bottleiconin");
-    x.classList.toggle("iconchange");
+
+    x.classList.toggle("colortwo")
+    x.classList.toggle("fa-beat");
+    x.classList.toggle("colorone");
+
 }
 function dropleticonfunction() {
     var x = document.getElementById("dropleticonin");
-    x.classList.toggle("iconchange");
+    x.classList.toggle("fa-beat");
+    x.classList.toggle("colorone");
+    x.classList.toggle("colortwo");
 }
