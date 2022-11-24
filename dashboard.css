@@ -2,8 +2,26 @@ body {
     background: #caf0f8 url("diagonal-waves.png") repeat;
     font-family: 'Fauna One', serif;
     font-size: 16px;
-}
 
+}
+#photos {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+.card {
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+footer {
+    background-color: #03045E;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0px -10px 10px black;
+}
 #top {
     background-color: #03045E;
     box-shadow: 0px 10px 10px black;
@@ -15,15 +33,57 @@ body {
     font-size: 50px;
     box-shadow: 0px -10px 10px black inset;
 }
-#heading h1 {
+#heading p, h1 {
     font-size:38px;
     color: #060938;
 }
+#column:hover #photos {
+    opacity: 0.3;
+}
+#column:hover .middle {
+    opacity: 1;
+}
 
+#column {
+    width: 18rem;
+    background: #90E0EF url("watersplash.png") repeat;
+}
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: #90E0EF;
+}
+.text {
+    background-color: #00B4D8;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+    font-family: 'Fauna One', serif;
+}
+#canvasphotos {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
 .offcanvas {
     visibility: visible;
 }
-
+.overlaytext {
+    color: #03045E;
+    font-size: 24px;
+    padding: 16px 32px;
+    font-family: 'Fauna One', serif;
+    font-weight: bold;
+}
 .btn {
     color: rgba(255,255,255,.55);
 }
@@ -51,7 +111,11 @@ body {
     border: 2px solid #03045E;
     border-radius: 5px;
 }
-
+#article {
+    background-color: #CAF0F8;
+    border: 2px solid #03045E;
+    border-radius: 5px;
+}
 .submitbtn {
     background: #CAF0F8 url("diagonal-waves.png") repeat;
     border: 2px solid #03045E;
@@ -66,7 +130,7 @@ body {
     font-size: 36px;
     color: #CAF0F8;
     margin-left: 1em;
-    text-decoration: none;
+
 }
 button i {
     --fa-border-radius: 100%;
@@ -78,9 +142,12 @@ button i {
     background-color: #CAF0F8;
 }
 .col i {
-    color: rgba(0, 0, 255, 0.5);
-    --fa-inverse: #0077B6;
+    color: grey;
 }
+.iconchange {
+    color: #0077B6;
+}
+
 #maincard {
     background-color: rgba(0, 119, 182, .6);
     box-shadow: 10px -10px 15px black inset, -10px 10px 15px black inset;
@@ -107,6 +174,16 @@ button i {
     height: 60px;
     width: auto;
     text-align: center;
+}
+.fadedmessage h2{
+    opacity: 0.5;
+    color: #90E0EF;
+}
+#content {
+    height: inherit;
+}
+.linkdecorationrm {
+    text-decoration: none;
 }
 
 div.col-sm-1.pt-5.mt-5 > img{
