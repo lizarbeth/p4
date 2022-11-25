@@ -31,7 +31,7 @@ if ($mysqli->connect_error) {
 <body>
 
     <!-- Creates navigation bar at the top of the page -->
-    <nav class="navbar navbar-expand-sm navbar-dark" id="top">
+    <nav class="navbar navbar-expand-sm" id="top">
         <!-- Extends container to the width of the viewport -->
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -69,26 +69,26 @@ if ($mysqli->connect_error) {
 
             <li class="nav-item">
                 <button class="btn p-2" data-bs-toggle="tooltip" title="Home">
-                    <a class="nav-link" href="dashboard.php"><i class="fa-solid fa-house-flood-water fa-lg"></i></a>
+                    <a class="nav-link" href="dashboard.php"><i class="fa-solid fa-house-flood-water fa-lg" id="titleicons"></i></a>
                 </button>
 
             </li>
 
             <li class="nav-item">
                 <button class="btn p-2" data-bs-toggle="tooltip" title="Trending">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-arrow-trend-up fa-lg"></i></a>
+                    <a class="nav-link" href="#"><i class="fa-solid fa-arrow-trend-up fa-lg" id="titleicons"></i></a>
                 </button>
             </li>
 
             <li class="nav-item">
                 <button class="btn p-2" data-bs-toggle="tooltip" title="News">
-                    <a class="nav-link" href="#"><i class="fa-regular fa-newspaper fa-lg"></i></a>
+                    <a class="nav-link" href="#"><i class="fa-regular fa-newspaper fa-lg" id="titleicons"></i></a>
                 </button>
             </li>
 
             <li class="nav-item">
                 <button class="btn p-2" data-bs-toggle="tooltip" title="Sign Out">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a>
+                    <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket fa-lg" id="titleicons"></i></a>
                 </button>
             </li>
 
@@ -180,9 +180,9 @@ if ($mysqli->connect_error) {
         </div>
     </div>
 
-    <footer class="container-fluid mt-5 p-4 text-white text-center">
-        <h6 >Water Fanatics Inc.</h6>
-        <a class="linkdecorationrm" href="wiki/home.php">Like water? Learn more on our Wiki!</a>
+    <footer class="container-fluid mt-5 p-3 text-center" id="footerprofile">
+        <h5><strong>Water Fanatics Inc.</strong></h5>
+        <h5><strong><a class="linkdecorationrm" href="wiki/home.php">Like water? Learn more on our Wiki!</a></strong></h5>
     </footer>
 
 </body>
