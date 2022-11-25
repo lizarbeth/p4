@@ -17,17 +17,27 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 footer {
-    background-color: #03045E;
+    background: rgba(0, 119, 182, .6) url("background1.png");
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0px 10px 10px black inset;
+    color: #004aad;
+}
+#footerprofile {
+    background: rgba(0, 119, 182, .6) url("background1.png");
     position: absolute;
     bottom: 0;
     box-shadow: 0px -10px 10px black;
+    color: #004aad;
 }
 #top {
-    background-color: #03045E;
+    background: rgba(0, 119, 182, .6) url("background1.png");
     box-shadow: 0px 10px 10px black;
+    color: #1c228c;
 }
+
 #heading {
-    background-color: rgba(0, 119, 182, .6);
+    background: rgba(0, 119, 182, .6) url("background1.png");
     font-family: Cinzel, serif;
     color: #1c228c;
     font-size: 50px;
@@ -85,28 +95,28 @@ footer {
     font-weight: bold;
 }
 .btn {
-    color: rgba(255,255,255,.55);
+    color: #1c228c;
 }
 .offcanvas-header {
-    background-color: #03045E;
+    background-color: rgb(28, 34, 140);
     box-shadow: 0px 10px 10px black;
     color: rgba(255,255,255,.55);
 }
 
 .offcanvas-body {
-    background: #0077B6 url("diagonal-waves.png") repeat;
+    background: rgb(0, 119, 182, .9) url("diagonal-waves.png") repeat;
 }
 #offcanvasRightLabel {
     color: rgba(255,255,255,.55);
 }
 #loginbox {
-    width: 18rem;
+    width: 30rem;
     background-color: #CAF0F8;
     border: 2px solid #03045E;
     border-radius: 5px;
 }
 #adduserloginbox {
-    width: 24rem;
+    width: 30rem;
     background-color: #CAF0F8;
     border: 2px solid #03045E;
     border-radius: 5px;
@@ -135,7 +145,7 @@ footer {
 button i {
     --fa-border-radius: 100%;
     --fa-border-padding: 8px;
-    --fa-border-color: rgba(255,255,255,.55);
+    --fa-border-color: #1c228c;
     --fa-pull-margin: 4px;
 }
 .card-body, .card-footer {
@@ -192,6 +202,7 @@ button i {
 }
 .linkdecorationrm {
     text-decoration: none;
+    color: #004aad;
 }
 
 div.col-sm-1.pt-5.mt-5 > img{
@@ -201,4 +212,7 @@ div.col-sm-1.pt-5.mt-5 > img{
 div.col-sm-4.pt-5.mt-5 > p{
     text-align: justify;
     margin: auto;
+}
+#titleicons {
+    color: #1c228c;
 }
