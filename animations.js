@@ -16,12 +16,6 @@ window.onload = function () {
     home.addEventListener("mouseover",homefunction)
     home.addEventListener("mouseout",homefunctionout)
 
-    /* js for comment button */
-    var add = document.getElementsByClassName("showComments");
-    add.onclick = showForm;
-    var form = document.getElementsByClassName("display");
-
-
     /* js for animating the icons on each post */
     var reply = document.getElementsByClassName("fa-solid fa-reply replyiconin");
     for (let i = 0; i < reply.length; i++) {
@@ -100,14 +94,4 @@ function iconfunction() {
     this.classList.toggle("fa-beat");
 }
 
-
-/* js for show comments */
-function showForm(formID){
-    var form = document.getElementById(formID);
-    if(form.style.display === "none"){
-        form.style.display = "block";
-    } else {
-        form.style.display = "none";
-    }
-}
 
