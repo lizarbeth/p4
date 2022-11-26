@@ -21,7 +21,11 @@ window.onload = function () {
     var home = document.getElementById("home");
     home.addEventListener("mouseover",homefunction)
     home.addEventListener("mouseout",homefunctionout)
-
+    
+    /* js for comment button */
+    var add = document.getElementsByClassName("showComments");
+    add.onclick = showForm;
+    var form = document.getElementsByClassName("display");
 
 }
 
@@ -96,4 +100,13 @@ function dropleticonfunction() {
     x.classList.toggle("fa-beat");
     x.classList.toggle("colorone");
     x.classList.toggle("colortwo");
+}
+/* js for show comments */
+function showForm(formID){
+    var form = document.getElementById(formID);
+    if(form.style.display === "none"){
+        form.style.display = "block";
+    } else {
+        form.style.display = "none";
+    }
 }
