@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2022 at 03:27 AM
+-- Generation Time: Nov 26, 2022 at 07:09 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -89,22 +89,8 @@ INSERT INTO `likes` (`postID`, `liker`, `likeID`) VALUES
 (10, 'sharkgirl', 6),
 (4, 'lizarbeth', 7),
 (15, 'sharkgirl', 8),
-(1, 'lizarbeth', 18),
-(2, 'lizarbeth', 19),
-(3, 'lizarbeth', 20),
-(4, 'lizarbeth', 21),
-(11, 'lizarbeth', 22),
-(14, 'lizarbeth', 23),
-(15, 'lizarbeth', 24),
-(16, 'lizarbeth', 25),
-(17, 'lizarbeth', 26),
-(17, 'lizarbeth', 27),
-(17, 'lizarbeth', 28),
-(17, 'lizarbeth', 29),
-(17, 'lizarbeth', 30),
-(17, 'lizarbeth', 31),
-(17, 'lizarbeth', 32),
-(17, 'lizarbeth', 33);
+(1, 'lizarbeth', 9),
+(1, 'lizarbeth', 10);
 
 -- --------------------------------------------------------
 
@@ -128,15 +114,15 @@ CREATE TABLE `posts` (
 
 INSERT INTO `posts` (`postText`, `user`, `date`, `time`, `postID`, `likeCount`, `commentCount`) VALUES
 ('This is my first post.', 'lizarbeth', '2022-11-12', '09:08:45', 1, 1, 1),
-('Status update: currently at work (for once)', 'blueberry21', '2022-11-16', '03:13:19', 2, 1, 0),
-('hello', 'lizarbeth', '2022-11-16', '10:37:04', 3, 1, 0),
-('I\'m available to chat :-)', 'lizarbeth', '2022-11-16', '10:39:16', 4, 2, 0),
+('Status update: currently at work (for once)', 'blueberry21', '2022-11-16', '03:13:19', 2, 0, 0),
+('hello', 'lizarbeth', '2022-11-16', '10:37:04', 3, 0, 0),
+('I\'m available to chat :-)', 'lizarbeth', '2022-11-16', '10:39:16', 4, 1, 0),
 ('I LOVE WATER!!!!!!!!', 'hydrobro1995', '2022-11-17', '12:48:25', 10, 4, 1),
-('I love posting on here', 'lizarbeth', '2022-11-17', '07:48:58', 11, 1, 0),
-('this is another test post :-)', 'lizarbeth', '2022-11-17', '07:54:24', 14, 1, 0),
-('this is another test post :-)', 'lizarbeth', '2022-11-17', '07:54:44', 15, 2, 0),
-('Hi, I\'m new here my name is Shark Girl', 'sharkgirl', '2022-11-17', '05:29:56', 16, 3, 0),
-('test post', 'lizarbeth', '2022-11-23', '00:00:00', 17, 8, 0);
+('I love posting on here', 'lizarbeth', '2022-11-17', '07:48:58', 11, 0, 0),
+('this is another test post :-)', 'lizarbeth', '2022-11-17', '07:54:24', 14, 0, 0),
+('this is another test post :-)', 'lizarbeth', '2022-11-17', '07:54:44', 15, 1, 0),
+('Hi, I\'m new here my name is Shark Girl', 'sharkgirl', '2022-11-17', '05:29:56', 16, 2, 0),
+('test post', 'lizarbeth', '2022-11-23', '00:00:00', 17, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -220,7 +206,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `posts`
