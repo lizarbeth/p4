@@ -174,8 +174,9 @@ ALTER TABLE `friends`
 --
 ALTER TABLE `likes`
   ADD PRIMARY KEY (`likeID`),
+  ADD UNIQUE KEY `postID_2` (`postID`,`liker`),
   ADD KEY `fk3` (`liker`),
-  ADD KEY `postID` (`postID`);
+  ADD KEY `postID` (`postID`,`liker`);
 
 --
 -- Indexes for table `posts`
