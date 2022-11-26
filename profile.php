@@ -226,9 +226,9 @@ $displayLikedPosts = $likedPosts->fetch_array();
                         
                         <div class="card-footer border-top-0">
                             <div class="row">
-                                <div class="col"><span id="replyiconlisten"><i class="fa-solid fa-reply colorone" id="replyiconin"></i></span> 60k</div>
-                                <div class="col"><span id="bottleiconlisten"><i class="fa-solid fa-bottle-water colortwo" id="bottleiconin"></i></span><?php echo' '. $row['likeCount'];?></div>
-                                <div class="col"><span id="dropleticonlisten"><i class="fa-solid fa-droplet colorone" id="dropleticonin"></i></span></div>
+                                <div class="col"><span class="replyiconlisten"><i class="fa-solid fa-reply replyiconin colorone"></i></span> 60k</div>
+                                <div class="col"><span class="bottleiconlisten"><i class="fa-solid fa-bottle-water bottleiconin colortwo"></i></span><?php echo' '. $row['likeCount'];?></div>
+                                <div class="col"><span class="dropleticonlisten"><i class="fa-solid fa-droplet dropleticonin colorone"></i></span></div>
                             </div>
                         </div>
                         <?php } ?>
@@ -279,9 +279,9 @@ $displayLikedPosts = $likedPosts->fetch_array();
                         
                         <div class="card-footer border-top-0">
                             <div class="row">
-                                <div class="col"><span id="replyiconlisten"><i class="fa-solid fa-reply colorone" id="replyiconin"></i></span> 60k</div>
-                                <div class="col"><span id="bottleiconlisten"><i class="fa-solid fa-bottle-water colortwo" id="bottleiconin"></i></span> 60k</div>
-                                <div class="col"><span id="dropleticonlisten"><i class="fa-solid fa-droplet colorone" id="dropleticonin"></i></span></div>
+                                <div class="col"><span class="replyiconlisten"><i class="fa-solid fa-reply replyiconin colorone"></i></span> 60k</div>
+                                <div class="col"><span class="bottleiconlisten"><i class="fa-solid fa-bottle-water bottleiconin colortwo"></i></span> 60k</div>
+                                <div class="col"><span class="dropleticonlisten"><i class="fa-solid fa-droplet dropleticonin colorone"></i></span></div>
                             </div>
                         </div>
                         <?php } ?>
