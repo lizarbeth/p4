@@ -216,3 +216,7 @@ div.col-sm-4.pt-5.mt-5 > p{
 #titleicons {
     color: #1c228c;
 }
+img.profilepic{
+    width: 70px;
+    margin-right: 10px;
+}
