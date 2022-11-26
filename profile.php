@@ -1,17 +1,55 @@
 <?php
 //Accessing the database
 $servername = "localhost";
-$username = "INFX371";
+$dbusername = "INFX371";
 $password = "P*ssword";
 $dbname = "friend";
 
 // Create connection
-$mysqli = new mysqli($servername, $username, $password, $dbname);
+$db = new mysqli($servername, $dbusername, $password, $dbname);
 
 // Check connection
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
 }
+$username = $_GET['username']; 
+
+
+$userInfo = $db->query("SELECT * FROM users WHERE username='$username'");
+$user = $userInfo->fetch_assoc();
+
+
+$count = $db->query("SELECT COUNT(postID) FROM posts WHERE user='$username'");
+$countPosts = $count->fetch_column();
+
+$friends = $db->query("SELECT COUNT(user1) FROM friends 
+                        WHERE (user1='$username' OR user2='$username');");
+$friendCount = $friends->fetch_column();
+
+$postDetails = $db->query("SELECT p.user,p.postText,p.date,p.time,p.likeCount,p.commentCount,u.pic
+                            FROM posts p JOIN users u ON p.user=u.username
+                            WHERE user='$username'");
+$posts = $postDetails->fetch_assoc();
+// while($posts = $postDetails->fetch_assoc()){
+//     $postText = $posts['postText'];
+//     $postUser = $posts['user'];
+//     $postDate = $posts['date'];
+//     $postTime = $posts['time'];
+// }
+
+$likesGiven = $db->query("SELECT COUNT(likeID) FROM likes WHERE liker='$username'");
+$likesGivenOut = $likesGiven->fetch_column();
+
+//posts the user has liked:
+$likedPosts = $db->query("SELECT p.postText,p.user,p.likeCount,p.commentCount,l.liker,u.firstName,u.lastName,u.pic, p.time, p.date
+                            FROM posts p JOIN likes l ON p.postID=l.postID
+                            JOIN users u ON p.user=u.username WHERE liker = '$username'");
+$displayLikedPosts = $likedPosts->fetch_array();
+//print_r($displayLikedPosts);
+// while($displayLikedPosts = $likedPosts->fetch_assoc()){
+//     $user = $displayLikedPosts['user'];
+//     echo $user;
+// }
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +104,7 @@ if ($mysqli->connect_error) {
                 </div>
 
             </li>
-
+            <!-- navigation bar -->
             <li class="nav-item">
                 <button class="btn p-2" data-bs-toggle="tooltip" title="Home">
                     <a class="nav-link" href="dashboard.php"><i class="fa-solid fa-house-flood-water fa-lg" id="titleicons"></i></a>
@@ -126,18 +164,19 @@ if ($mysqli->connect_error) {
         <div class="tab-content">
             <div class="tab-pane container active" id="bio"><br>
                 <div>
-                    <i class="fa-solid fa-user fa-xl" id="profilepic"></i>
-                    <h4>Username</h4>
-                    <div class="fs-6 blockquote-footer my-2">First Last</div>
+                    <!--<i class="fa-solid fa-user fa-xl" id="profilepic"></i>-->
+                    <img src=<?php echo $user['pic'];?> alt=profilepic class="profilepic"></img>
+                    <h4><?php echo $user['username'];?></h4>
+                    <div class="fs-6 blockquote-footer my-2"><?php echo $user['firstName']; echo ' '; echo $user['lastName'];?></div>
 
                     <div class="row">
                         <span class="col fs-6 my-4"><i class="fa-solid fa-calendar"></i> Joined November 2022</span>
-                        <span class="col fs-6 my-4"><i class="fa-solid fa-user-group"></i> 50 Friends</span>
+                        <span class="col fs-6 my-4"><i class="fa-solid fa-user-group"></i> <?php echo $friendCount;?> Friends</span>
                     </div>
 
                     <div class="row">
-                        <span class="col fs-6 my-4"><i class="fa-solid fa-bottle-water"></i> 50 Bottles</span>
-                        <span class="col fs-6 my-4"><i class="fa-solid fa-message"></i> 50 Posts</span>
+                        <span class="col fs-6 my-4"><i class="fa-solid fa-bottle-water"></i> <?php echo $likesGivenOut;?> Likes</span>
+                        <span class="col fs-6 my-4"><i class="fa-solid fa-message"></i> <?php echo $countPosts;?> Posts</span>
                     </div>
 
                 </div>
@@ -145,17 +184,99 @@ if ($mysqli->connect_error) {
 
             <div class="tab-pane container" id="comments"><br>
                 <!-- The user's comments go here -->
+                <div class="container-fluid p-5 ">
+                    
+                    <div class="card my-2 d-flex justify-content-center">
+                        <?php foreach($postDetails as $row){
+                            $postedDate = $row['date'];
+                        
+                            //get days and weeks
+                            $date = strtotime(date('Y-m-d'));
+                            $postDate = strtotime($postedDate);
+                            $seconds = $date - $postDate;
+                            $days = $seconds / 86400;
+
+                            //get hours
+                            $localtime = strtotime(date('h:i:s'));
+                            $postTime = strtotime($row['time']);
+                            $seconds2 = $localtime - $postTime;
+                            $hours = round($seconds2 / 3600); 
+                            
+                            if ($days <= 1 && $hours < 24){
+                               if($hours == 1){ $message = "Posted " . $hours . " hour ago today";
+                               } else { $message = "Posted " . $hours . " hours ago today";}                               
+                               
+                            } 
+                            else if ($days < 7 && $days > 1){
+                                if($days = 1){ $message = "Posted " . $days . " day ago on " . $postedDate;
+                                } else { $message = "Posted " . $days . " days ago on " . $postedDate;}
+                            } 
+                            else if ($days <= 31 && $days >=7){
+                                $weeks = round($days / 7);
+                                if($weeks = 1){ $message = "Posted " . $weeks . " week ago on " . $postedDate;
+                                } else { $message = "Posted ". $weeks . " weeks ago on " . $postedDate; }
+                            } ?> 
+                            
+                        <div class="card-body">
+                            <h5 class="card-title"><img src=<?php echo $row['pic'];?> class="profilepic" alt=profile pic></img><?=$row['user'];?>
+                            <span class="fs-6 blockquote-footer my-1">Posted <?php echo $message;?></span></h5>
+
+                            <p><?php echo $row['postText']; ?></p>
+                        </div>
+                        
+                        <div class="card-footer border-top-0">
+                            <div class="row">
+                                <div class="col"><span id="replyiconlisten"><i class="fa-solid fa-reply colorone" id="replyiconin"></i></span> 60k</div>
+                                <div class="col"><span id="bottleiconlisten"><i class="fa-solid fa-bottle-water colortwo" id="bottleiconin"></i></span><?php echo' '. $row['likeCount'];?></div>
+                                <div class="col"><span id="dropleticonlisten"><i class="fa-solid fa-droplet colorone" id="dropleticonin"></i></span></div>
+                            </div>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
             </div>
 
             <div class="tab-pane container fade" id="bottles"><br>
                 <div class="container-fluid p-5 ">
 
                     <!-- Template for liked comments-->
+                    
                     <div class="card my-2 d-flex justify-content-center">
+                        <?php foreach($likedPosts as $row){
+                            $postedDate = $row['date'];
+                        
+                            //get days and weeks
+                            $date = strtotime(date('Y-m-d'));
+                            $postDate = strtotime($postedDate);
+                            $seconds = $date - $postDate;
+                            $days = $seconds / 86400;
+
+                            //get hours
+                            $localtime = strtotime(date('h:i:s'));
+                            $postTime = strtotime($row['time']);
+                            $seconds2 = $localtime - $postTime;
+                            $hours = round($seconds2 / 3600); 
+                            
+                            if ($days <= 1 && $hours < 24){
+                               if($hours == 1){ $message = "Posted " . $hours . " hour ago today";
+                               } else { $message = "Posted " . $hours . " hours ago today";}                               
+                               
+                            } 
+                            else if ($days < 7 && $days > 1){
+                                if($days = 1){ $message = "Posted " . $days . " day ago on " . $postedDate;
+                                } else { $message = "Posted " . $days . " days ago on " . $postedDate;}
+                            } 
+                            else if ($days <= 31 && $days >=7){
+                                $weeks = round($days / 7);
+                                if($weeks = 1){ $message = "Posted " . $weeks . " week ago on " . $postedDate;
+                                } else { $message = "Posted ". $weeks . " weeks ago on " . $postedDate; }
+                            } ?> 
+                            
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fa-solid fa-user fa-xl" id="profilepic"></i> User347592<span class="fs-6 blockquote-footer my-1">Posted x ago</span></h5>
-                            <p>Welcome to the Watering Hole!</p>
+                            <h5 class="card-title"><img src=<?php echo $row['pic'];?> class="profilepic" alt=profile pic></img><?=$row['user'];?><span class="fs-6 blockquote-footer my-1">Posted <?php echo $message;?></span></h5>
+                            <p><?php echo $row['postText']; ?></p>
                         </div>
+                        
                         <div class="card-footer border-top-0">
                             <div class="row">
                                 <div class="col"><span id="replyiconlisten"><i class="fa-solid fa-reply colorone" id="replyiconin"></i></span> 60k</div>
@@ -163,10 +284,9 @@ if ($mysqli->connect_error) {
                                 <div class="col"><span id="dropleticonlisten"><i class="fa-solid fa-droplet colorone" id="dropleticonin"></i></span></div>
                             </div>
                         </div>
+                        <?php } ?>
                     </div>
-
                 </div>
-
             </div>
 
             <div class="tab-pane container fade" id="drops"><br>
@@ -174,17 +294,15 @@ if ($mysqli->connect_error) {
                     <div class="d-flex justify-content-center fadedmessage">
                         <h2><i class="fa-regular fa-face-sad-tear fa-5x d-flex justify-content-center m-2"></i>You're Out of Drops!</h2>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="container-fluid mt-5 p-3 text-center" id="footerprofile">
+    <footer class="container-fluid mt-5 py-3 text-center" id="footerprofile">
         <h5><strong>Water Fanatics Inc.</strong></h5>
         <h5><strong><a class="linkdecorationrm" href="wiki/home.php">Like water? Learn more on our Wiki!</a></strong></h5>
     </footer>
 
 </body>
-
 </html>
