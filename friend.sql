@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2022 at 07:09 AM
+-- Generation Time: Nov 27, 2022 at 06:47 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -41,8 +41,8 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`postID`, `commenter`, `commentText`, `commentID`, `time`, `date`) VALUES
-(10, 'blueberry21', 'ME TOO!!!!', 1, '04:26:45', '2022-11-23'),
-(1, 'sharkgirl', 'cool. thanks for sharing.', 2, '00:00:00', '2022-11-23');
+(19, 'lizarbeth', 'this is my first comment!', 1, '10:20:01', '2022-11-26'),
+(20, 'blueberry21', 'stop blowing up my feed >:-(((', 2, '10:36:25', '2022-11-26');
 
 -- --------------------------------------------------------
 
@@ -61,8 +61,13 @@ CREATE TABLE `friends` (
 
 INSERT INTO `friends` (`user1`, `user2`) VALUES
 ('blueberry21', 'hydrobro1995'),
+('blueberry21', 'sharkgirl'),
+('hydrobro1995', 'iLoveWater2000'),
+('iLoveWater2000', 'lizarbeth'),
 ('lizarbeth', 'blueberry21'),
-('sharkgirl', 'lizarbeth');
+('lizarbeth', 'hydrobro1995'),
+('lizarbeth', 'sharkgirl'),
+('sharkgirl', 'iLoveWater2000');
 
 -- --------------------------------------------------------
 
@@ -81,16 +86,12 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`postID`, `liker`, `likeID`) VALUES
-(16, 'blueberry21', 1),
-(16, 'lizarbeth', 2),
-(10, 'blueberry21', 3),
-(10, 'hydrobro1995', 4),
-(10, 'lizarbeth', 5),
-(10, 'sharkgirl', 6),
-(4, 'lizarbeth', 7),
-(15, 'sharkgirl', 8),
-(1, 'lizarbeth', 9),
-(1, 'lizarbeth', 10);
+(19, 'iLoveWater2000', 5),
+(19, 'lizarbeth', 1),
+(20, 'blueberry21', 3),
+(20, 'lizarbeth', 2),
+(21, 'blueberry21', 4),
+(22, 'iLoveWater2000', 7);
 
 -- --------------------------------------------------------
 
@@ -113,16 +114,18 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`postText`, `user`, `date`, `time`, `postID`, `likeCount`, `commentCount`) VALUES
-('This is my first post.', 'lizarbeth', '2022-11-12', '09:08:45', 1, 1, 1),
-('Status update: currently at work (for once)', 'blueberry21', '2022-11-16', '03:13:19', 2, 0, 0),
-('hello', 'lizarbeth', '2022-11-16', '10:37:04', 3, 0, 0),
-('I\'m available to chat :-)', 'lizarbeth', '2022-11-16', '10:39:16', 4, 1, 0),
-('I LOVE WATER!!!!!!!!', 'hydrobro1995', '2022-11-17', '12:48:25', 10, 4, 1),
-('I love posting on here', 'lizarbeth', '2022-11-17', '07:48:58', 11, 0, 0),
-('this is another test post :-)', 'lizarbeth', '2022-11-17', '07:54:24', 14, 0, 0),
-('this is another test post :-)', 'lizarbeth', '2022-11-17', '07:54:44', 15, 1, 0),
-('Hi, I\'m new here my name is Shark Girl', 'sharkgirl', '2022-11-17', '05:29:56', 16, 2, 0),
-('test post', 'lizarbeth', '2022-11-23', '00:00:00', 17, 0, 0);
+('i wish people would post more...', 'lizarbeth', '2022-11-25', '04:48:46', 19, 1, 1),
+('this is my third post!!', 'lizarbeth', '2022-11-27', '04:49:46', 20, 2, 1),
+('I\'m finally at work for once...', 'blueberry21', '2022-11-27', '04:53:05', 21, 1, 0),
+('I LOVE WATER!!!!!!!!!!', 'iLoveWater2000', '2022-11-27', '05:54:28', 22, 1, 0),
+('Did I mention I love water?', 'iLoveWater2000', '2022-11-27', '05:54:42', 23, 0, 0),
+('I really like that I connect to my friends here', 'iLoveWater2000', '2022-11-27', '05:57:39', 24, 0, 0),
+('does anyone know where I can buy a bottle of water?', 'hydrobro1995', '2022-11-24', '08:10:45', 25, 0, 0),
+('hi :-)', 'sharkgirl', '2022-11-10', '06:19:35', 26, 0, 0),
+('i am the first poster!!', 'lizarbeth', '2022-11-14', '10:35:28', 27, 0, 0),
+('if anyone else likes sharks like me text me: 337-555-1904', 'sharkgirl', '2022-11-22', '03:45:00', 28, 0, 0),
+('i saw someone post about sharks earlier...don\'t they know this site is for water and not animals? \r\nwhatever. i unfriended them so it doesn\'t matter anymore.', 'hydrobro1995', '2022-11-25', '20:43:53', 29, 0, 0),
+('YOU GUYS.\r\nTHESE SQUIGGLES ~~~~ LOOK LIKE WATER\r\nOMG  ~~~\r\n~~~~~', 'iLoveWater2000', '2022-11-18', '12:13:04', 30, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -145,10 +148,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `firstName`, `lastName`, `password`, `email`, `count`, `pic`) VALUES
-('lizarbeth', 'Elisabeth', 'McMichael', 'LiZarBeth123!!', 'c00432278@louisiana.edu', 1, 'pp2.jpg'),
-('blueberry21', 'Lavender', 'Gooms', 'blackANDtan', 'lg21@gmail.com', 2, 'pp4.jpg'),
-('hydrobro1995', 'Ruben', 'Gold', 'iLoveWater!!$', 'rubengold1995@yahoo.com', 3, 'pp1.jpg'),
-('sharkgirl', 'Janet', 'Planet', 'lavaBOY', 'shkgrl@gmail.com', 4, 'pp3.jpg');
+('lizarbeth', 'Elisabeth', 'McMichael', '$2y$10$nxK2JMAkpa8I0cmYikNbgOmmnfyI5n6M0OAlT2oGnJa/HDaul7kdi', 'elisabeth.mcmichael41@gmail.com', 1, 'pp2.jpg'),
+('blueberry21', 'Lavender', 'Gooms', '$2y$10$T7b2qq39hL76nKnkGJTv7exKRoFsUxJBI45xMtmKPAOz96xUPlGFq', 'gus@gmail.com', 2, 'pp1.jpg'),
+('sharkgirl', 'Janet', 'Planet', '$2y$10$582c/mJV58dBqa0joXlnquAOFWl.vN2m5BhoGGjQMqNAyVUZjKGzm', 'shkgrl@hotmail.com', 3, 'pp1.jpg'),
+('hydrobro1995', 'Chris', 'Christopher', '$2y$10$S8haznbG6Yc0VYrn9wI.iuk//AZwegX5mwrJskL.AuNzn.olWLIUe', 'ccheese@aol.com', 4, 'pp4.jpg'),
+('iLoveWater2000', 'Sam', 'Hamm', '$2y$10$O.DGSEgZGupa4RGZor3cQ.gBUtIKRqFXGlVJt/sDuMfovia/yXZS.', 'sammyhammy@gmail.com', 5, 'pp4.jpg');
 
 --
 -- Indexes for dumped tables
@@ -207,19 +211,19 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `postID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `postID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `count` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `count` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -256,3 +260,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
