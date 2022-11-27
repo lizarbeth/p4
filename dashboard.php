@@ -162,6 +162,7 @@
                                 //$liker = '$username'; //need to change with sessions
                                 $profilePic = $row['pic'];
                                 $postedDate = $row['date'];
+                                $commentID = $postID . "c";
         
                                 //get days and weeks
                                 $date = strtotime(date('Y-m-d'));
