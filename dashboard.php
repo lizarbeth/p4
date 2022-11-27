@@ -34,6 +34,7 @@ $postDetails = $db->query("SELECT p.postText, p.user, p.date, p.time, p.likeCoun
                                 WHERE p.user IN (SELECT user1 FROM friends WHERE user2='$username')
                                 OR p.user IN (SELECT user2 FROM friends WHERE user1='$username')
                                 OR (p.user='$username')
+                                ORDER BY p.date DESC;
                                 "); //need to change with sessions
 
 $count = $db->query("SELECT COUNT(postID) FROM posts WHERE user='$username'");
@@ -253,7 +254,7 @@ $commentDetails = $db->query("SELECT * FROM comments");
                     <div class="multi-collapse<?=$postID?> collapse">
                         <?php
                         $commentDetails = $db->query("SELECT p.postID, c.commenter, c.commentText, c.time, c.date, p.user, p.commentCount, u.pic
-                                    FROM comments c JOIN posts p ON c.postID=p.postID JOIN users u ON u.username=c.commenter WHERE p.postID = '$postID'");
+                                    FROM comments c JOIN posts p ON c.postID=p.postID JOIN users u ON u.username=c.commenter WHERE p.postID = '$postID' ORDER BY c.date DESC");
                         foreach($commentDetails as $row2){
                             $postedDate = $row['date'];
 
