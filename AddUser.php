@@ -46,6 +46,17 @@
                     <label for="pwd">Enter Password: </label>
                 </div>
 
+                <div class="form-floating mb-3 mt-3" >
+                    <input type="text" class="form-control" id="pwd" name="confirmPassword" required></input>
+                    <label for="pwd">Enter Password: </label>
+                </div>
+			<?php
+                		if(isset($_GET['msg3'])){
+                    		$message = "Password is not the same";
+                    		echo $message;
+                		}
+			?>
+
                 <div class="form-floating mb-3 mt-3">
                     <input type="text" class="form-control" id="fname" name="FName" required></input>
                     <label for="fname">Enter First Name: </label>

@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION["username"])) {
+    header('location:login.php');
+}
+
 //Accessing the database
 $servername = "localhost";
 $dbusername = "INFX371";

@@ -1,6 +1,9 @@
 <?php
 session_start();
-//need to GET username from session variable
+if (!isset($_SESSION["username"])) {
+    header('location:login.php');
+}
+$username = $_SESSION["username"];
 
 //connect to database
 $db = new mysqli("localhost", "INFX371", "P*ssword", "friend");

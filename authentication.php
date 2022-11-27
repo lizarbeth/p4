@@ -16,7 +16,9 @@
 		if ($Username == ($user['username'])){
 			echo $user['password'];
 			if(password_verify($Password, $user['password'])){
-				header( 'Location: AddUser.php' );
+				session_start();
+				$_SESSION["username"] = $Username;
+				header( 'Location: dashboard.php' );
 				break;
 			}
 			else{
