@@ -124,8 +124,8 @@ $commentDetails = $db->query("SELECT * FROM comments");
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<div class="container border border-success border-start border-end border-opacity-25">
-    <div class="row d-flex align-items-start">
+<div class="container">
+    <div class="row mb-5 d-flex align-items-start">
         <div class="col-sm-4 pt-5 mt-5">
             <div class="card p-2 d-flex justify-content-center" id="dashcard">
                 <div class="card">
@@ -160,7 +160,7 @@ $commentDetails = $db->query("SELECT * FROM comments");
             </div>
         </div>
 
-        <div class="col-sm-8 pt-5 mt-5">
+        <div class="col-sm-8 pt-5 mt-5 mb-5 pb-5">
             <div class="card card-body" id="dashcard">
 
 
