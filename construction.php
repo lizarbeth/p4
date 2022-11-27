@@ -77,19 +77,19 @@ $user = $userDetails->fetch_assoc();
 
             <li class="nav-item">
                 <button class="btn p-2" data-bs-toggle="tooltip" title="Trending">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-arrow-trend-up fa-lg" id="titleicons"></i></a>
+                    <a class="nav-link" href="construction.php"><i class="fa-solid fa-arrow-trend-up fa-lg" id="titleicons"></i></a>
                 </button>
             </li>
 
             <li class="nav-item">
                 <button class="btn p-2" data-bs-toggle="tooltip" title="News">
-                    <a class="nav-link" href="#"><i class="fa-regular fa-newspaper fa-lg" id="titleicons"></i></a>
+                    <a class="nav-link" href="construction.php"><i class="fa-regular fa-newspaper fa-lg" id="titleicons"></i></a>
                 </button>
             </li>
 
             <li class="nav-item">
                 <button class="btn p-2" data-bs-toggle="tooltip" title="Sign Out">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket fa-lg" id="titleicons"></i></a>
+                    <a class="nav-link" href="logout.php"><i class="fa-solid fa-right-from-bracket fa-lg" id="titleicons"></i></a>
                 </button>
             </li>
 
