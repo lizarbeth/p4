@@ -31,7 +31,7 @@
 			header( 'Location: AddUser.php?msg' );
 		}
 		else{
-			header( 'Location: AddUser.php' );
+			header( 'Location: login.php' );
 		}
 	}
 	
