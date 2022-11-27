@@ -7,6 +7,8 @@ $db = new mysqli("localhost", "INFX371", "P*ssword", "friend");
 if($db->connect_errno) {
     echo "Failed to connect to MySQL: " . $db->connect_errno;
 }
+$date = date("Y:m:d");
+$time = date("h:i:s");
 
 //insert comments (data from 'POST') into database
 if(isset($_POST['text'])){
@@ -156,10 +158,9 @@ $commentDetails = $db->query("SELECT * FROM comments");
                 <p> post text: <?=$row['postText'];?> </p>
                 <?php
                 $likes = $row['likeCount'];
+                $commentCount = $row['commentCount'];
                 $postID = $row['postID'];
                 $liker = 'lizarbeth'; //need to change with sessions
-                $commentID = $postID . "c";
-                $buttonID = $postID . "b";
                 $postedDate = $row['date'];
 
                 //get days and weeks
@@ -198,16 +199,17 @@ $commentDetails = $db->query("SELECT * FROM comments");
                 </form>
 
                 <!-- add comments through form-->
-                <form id="<?php echo $commentID;?>" class="commentBtn" action="test.php" method="GET">
-                    <label for="text">Add a Comment</label><br>
-                    <textarea name="text" id="text" rows="1" cols="50"></textarea>
+                <form id="<?php echo $commentID;?>" class="commentBtn" action="dashboard.php" method="POST">
+                    <label for="comment">Add a Comment</label><br>
+                    <textarea name="comment" id="comment" rows="1" cols="50"></textarea>
+                    <input type="hidden" name="commentPostID" value="<?php echo $row['postID'];?>">
                     <button type="submit">Post Comment</button>
-                </form>
+                 </form>  
                 <p> ------------------------- </p>
 
                 <!-- button to display comments (javascript) -->
 
-                <button class="btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse<?=$postID?>" aria-expanded="false">Show <?php echo $row['commentCount']?> Comments</button>
+                <button class="btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse<?=$postID?>" aria-expanded="false">Show <?php echo $commentCount;?> Comments</button>
                 <!-- print out comments -->
                 <div class="multi-collapse<?=$postID?> collapse" style="display:block;">
                     <div class="multi-collapse<?=$postID?> collapse">
@@ -216,22 +218,30 @@ $commentDetails = $db->query("SELECT * FROM comments");
                         foreach($commentDetails as $row2){
                             $commenter = $row2['commenter'];
                             $commentText = $row2['commentText']; ?>
-                            <p><?=$commenter?> says: </p>
+                            <p><a href="profile.php?username=<?php echo $commenter?>" target="_blank"><?php echo $commenter?></a> says: </p>
                             <p><?=$commentText?></p>
-                        <?php   }?>
+               <?php    }?>
                     </div>
-
-
                 </div>
 
                 <p> *-----*-----*-----*-----* </p>
             <?php   }
-            if(isset($_GET['like'])){
+            if(isset($_GET['like'])){ 
                 $button = $_GET['like'];
                 $likes++;
                 $db->query("UPDATE posts SET likeCount = '$likes' WHERE postID='$button'");
                 $db->query("INSERT INTO likes (postID, liker) VALUES('$button','$liker')");
-            } ?>
+            } 
+            
+            if(isset($_POST['comment']) && isset($_POST['commentPostID'])){
+                $postID = $_POST['commentPostID'];
+                $commentText = mysqli_real_escape_string($db,$_POST['comment']);
+                $commentCount++;
+                $db->query("UPDATE posts SET commentCount = '$commentCount' WHERE postID='$postID'");
+                $db->query("INSERT INTO comments (postID, commenter, commentText, time, date)
+                            VALUES('$postID', '$liker', '$commentText', '$date', '$time')");
+            }
+            ?> 
 
         </div>
     </div>
