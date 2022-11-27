@@ -220,3 +220,25 @@ img.profilepic{
     width: 70px;
     margin-right: 10px;
 }
+a>img.bigProfilePic{
+   	width: 100px;
+	border-radius: 50%;
+	
+}
+div>img.sideProfilePic{
+	width: 70px;
+	margin-bottom: 10px;
+	border-radius: 50%;
+}
+button>img.navProfilePic{
+	width: 45px;
+	border-radius: 50%;
+}
+img.center-block{
+	width: 25%;
+    	mix-blend-mode: color-burn;
+}
+div.row.d-flex.pt-5.text-center>h4{
+	color: #1c228c;
+	font-weight: bold;
+}
