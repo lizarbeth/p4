@@ -308,7 +308,7 @@ $comments = $commentData->fetch_assoc();
                                     <div class="card-body">
                                         <h6 class="card-title">
                                             <img src="<?php echo $row2['pic'];?>" alt="profilepic" class="profilepic">
-                                            <a href="profile.php?username=<?php echo $commenter?>" target="_blank"><?php echo $commenter?></a> <span class="fs-6 blockquote-footer my-1"><?php echo $message;?></span>
+                                            <a class="linkdecorationrm" href="profile.php?username=<?php echo $commenter?>" target="_blank"><?php echo $commenter?></a> <span class="fs-6 blockquote-footer my-1"><?php echo $message;?></span>
                                         </h6>
                                         <p><?=$commentText?></p>
                                     </div>
@@ -436,7 +436,7 @@ $comments = $commentData->fetch_assoc();
                                     <div class="card-body">
                                         <h6 class="card-title">
                                             <img src="<?php echo $row2['pic'];?>" alt="profilepic" class="profilepic">
-                                            <a href="profile.php?username=<?php echo $commenter?>" target="_blank"><?php echo $commenter?></a> <span class="fs-6 blockquote-footer my-1"><?php echo $message;?></span>
+                                            <a class="linkdecorationrm" href="profile.php?username=<?php echo $commenter?>" target="_blank"><?php echo $commenter?></a> <span class="fs-6 blockquote-footer my-1"><?php echo $message;?></span>
                                         </h6>
                                         <p><?=$commentText?></p>
                                     </div>
