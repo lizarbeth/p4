@@ -207,7 +207,7 @@
                                             <!-- like button and like count -->
                                             <form id="<?php echo $postID;?>" action="dashboard.php" method="POST">
                                                 <input type="hidden" name="like" class="like" value="<?php echo $row['postID'];?>">
-                                                <button class="likesbutton" type="submit" name="likeButton" value="<?php echo $row['postID'];?>"><span class="bottleiconlisten"><i class="fa-solid fa-bottle-water bottleiconin colortwo"></span></i></button> 
+                                                <button class="likesbutton" type="submit" name="likeButton" value="<?php echo $row['postID'];?>"><span class="bottleiconlisten"><i class="fa-solid fa-bottle-water bottleiconin colorone"></span></i></button> 
                                                 <label for="button"> <?=$row['likeCount']?></label>
                                             </form> 
                                         </div>
@@ -283,7 +283,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title">
                                                     <img src="<?php echo $row2['pic'];?>" alt="profilepic" class="profilepic">
-                                                    <a href="profile.php?username=<?php echo $commenter?>" target="_blank"><?php echo $commenter?></a> <span class="fs-6 blockquote-footer my-1"><?php echo $message;?></span>
+                                                    <a class="linkdecorationrm" href="profile.php?username=<?php echo $commenter?>" target="_blank"><?php echo $commenter?></a> <span class="fs-6 blockquote-footer my-1"><?php echo $message;?></span>
                                                 </h6>
                                                 <p><?=$commentText?></p>
                                             </div>
