@@ -10,7 +10,6 @@ $db = new mysqli("localhost", "INFX371", "P*ssword", "friend");
 if($db->connect_errno) {
     echo "Failed to connect to MySQL: " . $db->connect_errno;
 }
-$username='lizarbeth'; //change with sessions
 
 $userDetails = $db->query("SELECT username, firstName, lastName, pic FROM users WHERE username='$username'"); //change with sessions
 $user = $userDetails->fetch_assoc();
