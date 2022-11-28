@@ -57,8 +57,8 @@ $user = $userDetails->fetch_assoc();
                             <ol class="fa-ul p-5">
                                 <li id="home" class="container my-1 p-2"><a class="linkdecorationrm" href="dashboard.php"><span class="fa-li"><i class="fa-solid fa-house-flood-water" id="homein"></i></span>Home</a></li>
                                 <li id="profile" class="container my-1 p-2"><a class="linkdecorationrm" href="profile.php?username=<?php echo $username ?>"><span class="fa-li"><i class="fa-solid fa-book-open-reader" id="profilein"></i></span>Profile</a></li>
-                                <li id="drop" class="container my-1 p-2"><a class="linkdecorationrm" href="#"><span class="fa-li"><i class="fa-solid fa-droplet" id="dropin"></i></span>Drops</a></li>
-                                <li id="gear" class="container my-1 p-2"><a class="linkdecorationrm" href="#"><span class="fa-li"><i class="fa-solid fa-gear" id="gearin"></i></span>Settings</a></li>
+                                <li id="drop" class="container my-1 p-2"><a class="linkdecorationrm" href="profile.php?username=<?php echo $username ?>"><span class="fa-li"><i class="fa-solid fa-droplet" id="dropin"></i></span>Drops</a></li>
+                                <li id="gear" class="container my-1 p-2"><a class="linkdecorationrm" href="construction.php"><span class="fa-li"><i class="fa-solid fa-gear" id="gearin"></i></span>Settings</a></li>
                             </ol>
 
                         </div>
