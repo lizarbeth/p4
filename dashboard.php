@@ -340,7 +340,7 @@ $likedPosts = $db->query("SELECT p.postText,p.user,p.likeCount,p.commentCount,l.
                 $time = date("h:i:s");
                 $db->query("UPDATE posts SET commentCount = '$commentCount' WHERE postID='$postID'");
                 $db->query("INSERT INTO comments (postID, commenter, commentText, time, date)
-                                    VALUES('$postID', '$username', '$commentText', '$date', '$time')");
+                                    VALUES('$postID', '$username', '$commentText', '$time', '$date')");
                 ?>
                 <meta http-equiv="refresh" content="0; url=dashboard.php">
             <?php }
