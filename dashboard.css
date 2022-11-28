@@ -17,19 +17,20 @@ body {
 }
 footer {
     background: rgba(0, 119, 182, .6) url("background1.png");
-    position: fixed;
     bottom: 0;
     box-shadow: 0px 10px 10px black inset;
     color: #004aad;
+    display: inline-block;
 }
 #footerprofile {
     background: rgba(0, 119, 182, .6) url("background1.png");
-    position: fixed;
     bottom: 0;
+    height: auto;
     box-shadow: 0px -10px 10px black;
     color: #004aad;
-
+    display: inline-block;
 }
+
 #top {
     background: rgba(0, 119, 182, .6) url("background1.png");
     box-shadow: 0px 10px 10px black;
@@ -217,31 +218,31 @@ div.col-sm-4.pt-5.mt-5 > p{
     color: #1c228c;
 }
 img.profilepic{
-    width: 70px;
-    margin-right: 10px;
+    	width: 70px;
+    	margin-right: 10px;
+	border-radius: 50%;
 }
 a>img.bigProfilePic{
-    width: 100px;
-    border-radius: 50%;
-
+   	width: 100px;
+	border-radius: 50%;
+	
 }
 div>img.sideProfilePic{
-    width: 70px;
-    margin-bottom: 10px;
-    border-radius: 50%;
+	width: 70px;
+	margin-bottom: 10px;
+	border-radius: 50%;
 }
-.navProfilePic {
-    width: 45px;
-    border-radius: 50%;
-    height: auto;
+button>img.navProfilePic{
+	width: 45px;
+	border-radius: 50%;
 }
 img.center-block{
-    width: 25%;
-    mix-blend-mode: color-burn;
+	width: 25%;
+    	mix-blend-mode: color-burn;
 }
 div.row.d-flex.pt-5.text-center>h4{
-    color: #1c228c;
-    font-weight: bold;
+	color: #1c228c;
+	font-weight: bold;
 }
 #dashcard {
     background: rgb(0, 119, 182, .9) url("diagonal-waves.png") repeat;
@@ -249,4 +250,7 @@ div.row.d-flex.pt-5.text-center>h4{
 .likesbutton {
     background-color: #CAF0F8;
     border: none;
+}
+div.card.mt-3{
+    background-color:#CAF0F8;
 }
