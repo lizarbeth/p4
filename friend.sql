@@ -46,7 +46,6 @@ INSERT INTO `comments` (`postID`, `commenter`, `commentText`, `commentID`, `time
 (20, 'sharkgirl', 'that was rude @blueberry21.', 3, '02:15:35', '2022-11-27'),
 (28, 'iLoveWater2000', 'can I text you about non-shark-related things too?', 4, '04:15:49', '2022-11-23'),
 (26, 'blueberry21', 'hey @sharkgirl', 7, '05:20:22', '2022-11-24'),
-(20, 'blueberry21', 'hi', 8, '00:20:22', '0000-00-00');
 
 -- --------------------------------------------------------
 
