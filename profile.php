@@ -252,7 +252,7 @@ $comments = $commentData->fetch_assoc();
                             <div class="card-footer border-top-0">
                                 <div class="row">
                                     <div class="col"><span id="replyiconlisten"><i class="fa-solid fa-reply colorone" id="replyiconin"></i></span><?php echo ' '. $row['commentCount'];?></div>
-                                    <div class="col"><span id="bottleiconlisten"><i class="fa-solid fa-bottle-water colortwo" id="bottleiconin"></i></span><?php echo' '. $row['likeCount'];?></div>
+                                    <div class="col"><span id="bottleiconlisten"><i class="fa-solid fa-bottle-water colorone" id="bottleiconin"></i></span><?php echo' '. $row['likeCount'];?></div>
                                     <div class="col"><span id="dropleticonlisten"><i class="fa-solid fa-droplet colorone" id="dropleticonin"></i></span></div>
                                 </div>
                             </div>
