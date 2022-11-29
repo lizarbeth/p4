@@ -13,6 +13,7 @@
     <script src="https://kit.fontawesome.com/c924802615.js" crossorigin="anonymous"></script>
     <script src="animations.js"></script>
     <title>Watering Hole Login</title>
+    <link rel="icon" href="smallicon.png">
 </head>
 
 <body>
