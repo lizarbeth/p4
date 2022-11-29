@@ -44,6 +44,10 @@ $likedPosts = $db->query("SELECT p.postText,p.user,p.likeCount,p.commentCount,l.
                             FROM posts p JOIN likes l ON p.postID=l.postID
                             JOIN users u ON p.user=u.username WHERE liker = '$username'");
 
+// $likes = $db->query("SELECT likeCount FROM posts WHERE postID='21'");
+// $likeCount = $likes->fetch_column();
+// echo $likeCount;
+
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +62,7 @@ $likedPosts = $db->query("SELECT p.postText,p.user,p.likeCount,p.commentCount,l.
     <script src="https://kit.fontawesome.com/c924802615.js" crossorigin="anonymous"></script>
     <link href="dashboard.css" rel="stylesheet" type="text/css">
     <title>Watering Hole</title>
+    <link rel="icon" href="smallicon.png">
 </head>
 <body>
 <!-- Creates navigation bar at the top of the page -->
@@ -321,20 +326,37 @@ $likedPosts = $db->query("SELECT p.postText,p.user,p.likeCount,p.commentCount,l.
                     </div>
 
 
-                <?php   }?>
+                <?php   } ?>
             </div>
             <?php
             if(isset($_POST['like'])){
                 $button = $_POST['like'];
-                $likes++;
-                $db->query("UPDATE posts SET likeCount = '$likes' WHERE postID='$button'");
-                $db->query("INSERT INTO likes (postID, liker) VALUES('$button','$username')"); ?>
+                $findLike = $db->query("SELECT COUNT(*) FROM likes WHERE (postID='$button') AND (liker='$username')");
+                $findLikeCol = $findLike->fetch_column();
+                
+                $likes = $db->query("SELECT likeCount FROM posts WHERE postID='$button'");
+                $likeCount = $likes->fetch_column();
+
+                if($findLikeCol==0){
+                    $likeCount++;
+                    
+                    $db->query("UPDATE posts SET likeCount = '$likeCount' WHERE postID='$button'");
+                    $db->query("INSERT INTO likes (postID, liker) VALUES('$button','$username')"); 
+               
+                } elseif($findLikeCol==1) {
+                    $likeCount--;
+                    $db->query("UPDATE posts SET likecount = '$likeCount' WHERE postID='$button'");
+                    $db->query("DELETE FROM likes WHERE (postID='$button') AND (liker='$username')");
+                      
+                }?>
                 <meta http-equiv="refresh" content="0; url=dashboard.php">
 
             <?php }
             if(isset($_POST['comment']) && isset($_POST['commentPostID'])){
                 $postID = $_POST['commentPostID'];
                 $commentText = mysqli_real_escape_string($db,$_POST['comment']);
+                $comments = $db->query("SELECT commentCount FROM posts WHERE postID='$postID'");
+                $commentCount = $comments->fetch_column();
                 $commentCount++;
                 $date = date("Y-m-d");
                 $time = date("h:i:s");
