@@ -42,7 +42,8 @@ $friendCount = $friends->fetch_column();
 //get all post information
 $postDetails = $db->query("SELECT p.user,p.postText,p.date,p.time,p.likeCount,p.commentCount,u.pic, p.postID
                             FROM posts p JOIN users u ON p.user=u.username
-                            WHERE user='$username'");
+                            WHERE user='$username'
+                            ORDER BY p.date DESC");
 $posts = $postDetails->fetch_assoc();
 
 //get the amount of likes based on user
@@ -52,7 +53,8 @@ $likesGivenOut = $likesGiven->fetch_column();
 //posts the user has liked:
 $likedPosts = $db->query("SELECT p.postText,p.user,p.likeCount,p.commentCount,l.liker,u.firstName,u.lastName,u.pic, p.time, p.date, p.postID
                             FROM posts p JOIN likes l ON p.postID=l.postID
-                            JOIN users u ON p.user=u.username WHERE liker = '$username'");
+                            JOIN users u ON p.user=u.username WHERE liker = '$username'
+                            ORDER BY p.date DESC");
 $displayLikedPosts = $likedPosts->fetch_assoc();
 
 //check if user logged in is friend's with the profile to add comments or not
@@ -79,6 +81,7 @@ $comments = $commentData->fetch_assoc();
     <script src="https://kit.fontawesome.com/c924802615.js" crossorigin="anonymous"></script>
     <script src="animations.js"></script>
     <title>Watering Hole Profile</title>
+    <link rel="icon" href="smallicon.png">
 </head>
 
 
@@ -245,7 +248,7 @@ $comments = $commentData->fetch_assoc();
 
                         <div class="card m-3 d-flex justify-content-center">
                             <div class="card-body">
-                                <h5 class="card-title"><img src=<?php echo $row['pic'];?> class="profilepic" alt=profile pic></img><?=$row['user'];?> <span class="fs-6 blockquote-footer my-1"> <?php echo $message;?></span></h5>
+                                <h5 class="card-title"><a class="linkdecorationrm" href="profile.php?username=<?=$row["user"];?>" target="_blank"><img src=<?php echo $row['pic'];?> class="profilepic" alt=profile pic></img><?=$row['user'];?></a> <span class="fs-6 blockquote-footer my-1"> <?php echo $message;?></span></h5>
                                 <p><?php echo $row['postText']; ?></p>
                             </div>
 
@@ -270,7 +273,7 @@ $comments = $commentData->fetch_assoc();
                             <div class="multi-collapse<?=$postID?> collapse">
                             <?php
                             $commentDetails = $db->query("SELECT p.postID, c.commenter, c.commentText, c.time, c.date, p.user, p.commentCount, u.pic
-                            FROM comments c JOIN posts p ON c.postID=p.postID JOIN users u ON u.username=c.commenter WHERE p.postID = '$postID'");
+                            FROM comments c JOIN posts p ON c.postID=p.postID JOIN users u ON u.username=c.commenter WHERE p.postID = '$postID' ORDER BY c.time DESC");
                             foreach($commentDetails as $row2){
                                 $postedDate = $row2['date'];
 
@@ -372,7 +375,7 @@ $comments = $commentData->fetch_assoc();
 
                             <div class="card m-3 d-flex justify-content-center">
                                 <div class="card-body">
-                                    <h5 class="card-title"><img src=<?php echo $row['pic'];?> class="profilepic" alt=profile pic></img><?=$row['user'];?><span class="fs-6 blockquote-footer my-1"> <?php echo $message;?></span></h5>
+                                    <h5 class="card-title"><a class="linkdecorationrm" href="profile.php?username=<?=$row["user"];?>" target="_blank"><img src=<?php echo $row['pic'];?> class="profilepic" alt=profile pic></img><?=$row['user'];?></a><span class="fs-6 blockquote-footer my-1"> <?php echo $message;?></span></h5>
                                     <p><?php echo $row['postText']; ?></p>
                                 </div>
 
@@ -398,7 +401,7 @@ $comments = $commentData->fetch_assoc();
                             <div class="multi-collapse<?=$postID?> collapse">
                             <?php
                             $commentDetails = $db->query("SELECT p.postID, c.commenter, c.commentText, c.time, c.date, p.user, p.commentCount, u.pic
-                                    FROM comments c JOIN posts p ON c.postID=p.postID JOIN users u ON u.username=c.commenter WHERE p.postID = '$postID' ORDER BY c.date DESC");
+                                    FROM comments c JOIN posts p ON c.postID=p.postID JOIN users u ON u.username=c.commenter WHERE p.postID = '$postID' ORDER BY c.time DESC");
                             foreach($commentDetails as $row2){
                                 $postedDate = $row2['date'];
 
@@ -462,13 +465,10 @@ $comments = $commentData->fetch_assoc();
     </div>
 </div>
 
-
 <footer class="container-fluid mt-5 py-3 text-center" id="footerprofile">
     <h5><strong>Water Fanatics Inc.</strong></h5>
     <h5><strong><a class="linkdecorationrm" href="wiki/home.php">Like water? Learn more on our Wiki!</a></strong></h5>
 </footer>
 
-
 </body>
-
 </html>
