@@ -26,6 +26,7 @@ $user = $userDetails->fetch_assoc();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel|Fauna+One">
     <script src="https://kit.fontawesome.com/c924802615.js" crossorigin="anonymous"></script>
     <title>Watering Hole</title>
+    <link rel="icon" href="smallicon.png">
 </head>
 
 <body>
