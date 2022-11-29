@@ -255,7 +255,32 @@ $comments = $commentData->fetch_assoc();
                             <div class="card-footer border-top-0">
                                 <div class="row">
                                     <div class="col"><span id="replyiconlisten"><i class="fa-solid fa-reply colorone" id="replyiconin"></i></span><?php echo ' '. $row['commentCount'];?></div>
-                                    <div class="col"><span id="bottleiconlisten"><i class="fa-solid fa-bottle-water colorone" id="bottleiconin"></i></span><?php echo' '. $row['likeCount'];?></div>
+                                    <div class="col">
+                                        <?php
+                                        $y=0;
+                                        foreach($likedPosts as $x) {
+                                            $likedpostid = $x['postID'];
+
+                                            if($likedpostid == $postID) {
+                                                $y=1;
+                                                break;
+                                            }
+                                            else {
+                                                $y=0;
+                                            }
+                                        }
+                                        if ($y==1) {
+                                            ?><span class="bottleiconlisten"><i class="fa-solid fa-bottle-water bottleiconin colortwo"></span></i>
+                                            <label for="span"> <?=$row['likeCount']?></label><?php
+                                        }
+                                        else {
+                                            ?><span class="bottleiconlisten"><i class="fa-solid fa-bottle-water bottleiconin colorone"></span></i>
+                                            <label for="span"> <?=$row['likeCount']?></label><?php
+                                        }
+
+                                        ?>
+                                    </div>
+
                                     <div class="col"><span id="dropleticonlisten"><i class="fa-solid fa-droplet colorone" id="dropleticonin"></i></span></div>
                                 </div>
                             </div>
@@ -268,59 +293,59 @@ $comments = $commentData->fetch_assoc();
 
 
 
-                            <!-- print out comments -->
-                            <div class="multi-collapse<?=$postID?> collapse" style="display:block;">
+                        <!-- print out comments -->
+                        <div class="multi-collapse<?=$postID?> collapse" style="display:block;">
                             <div class="multi-collapse<?=$postID?> collapse">
-                            <?php
-                            $commentDetails = $db->query("SELECT p.postID, c.commenter, c.commentText, c.time, c.date, p.user, p.commentCount, u.pic
+                                <?php
+                                $commentDetails = $db->query("SELECT p.postID, c.commenter, c.commentText, c.time, c.date, p.user, p.commentCount, u.pic
                             FROM comments c JOIN posts p ON c.postID=p.postID JOIN users u ON u.username=c.commenter WHERE p.postID = '$postID' ORDER BY c.time DESC");
-                            foreach($commentDetails as $row2){
-                                $postedDate = $row2['date'];
+                                foreach($commentDetails as $row2){
+                                    $postedDate = $row2['date'];
 
-                                //get days and weeks
-                                $date = strtotime(date('Y-m-d'));
-                                $postDate = strtotime($postedDate);
-                                $seconds = $date - $postDate;
-                                $days = $seconds / 86400;
-
-
-                                //get hours
-                                $localtime = strtotime(date('h:i:s'));
-                                $postTime = strtotime($row2['time']);
-                                $seconds2 = $localtime - $postTime;
-                                $hours = round(abs($seconds2 / 3600));
+                                    //get days and weeks
+                                    $date = strtotime(date('Y-m-d'));
+                                    $postDate = strtotime($postedDate);
+                                    $seconds = $date - $postDate;
+                                    $days = $seconds / 86400;
 
 
+                                    //get hours
+                                    $localtime = strtotime(date('h:i:s'));
+                                    $postTime = strtotime($row2['time']);
+                                    $seconds2 = $localtime - $postTime;
+                                    $hours = round(abs($seconds2 / 3600));
 
-                                if ($days <= 1 && $hours < 24){
-                                    if($hours <= 1){ $message = "Posted less than an hour ago";
-                                    } else { $message = "Posted " . $hours . " hours ago";}
-                                }
-                                else if ($days < 7 && $days > 1){
-                                    if($days == 1){ $message = "Posted " . $days . " day ago on " . $postedDate;
-                                    } else { $message = "Posted " . $days . " days ago on " . $postedDate;}
-                                }
-                                else if ($days <= 31 && $days >=7){
-                                    $weeks = round($days / 7);
-                                    if($weeks == 1){ $message = "Posted " . $weeks . " week ago on " . $postedDate;
-                                    } else { $message = "Posted ". $weeks . " weeks ago on " . $postedDate; }
-                                } ?> <?php
-                                $commenter = $row2['commenter'];
-                                $commentText = $row2['commentText']; ?>
-                                <div class="card d-flex justify-content-center ms-5 mt-2 mb-3">
-                                    <div class="card-body">
-                                        <h6 class="card-title">
-                                            <img src="<?php echo $row2['pic'];?>" alt="profilepic" class="profilepic">
-                                            <a class="linkdecorationrm" href="profile.php?username=<?php echo $commenter?>" target="_blank"><?php echo $commenter?></a> <span class="fs-6 blockquote-footer my-1"><?php echo $message;?></span>
-                                        </h6>
-                                        <p><?=$commentText?></p>
+
+
+                                    if ($days <= 1 && $hours < 24){
+                                        if($hours <= 1){ $message = "Posted less than an hour ago";
+                                        } else { $message = "Posted " . $hours . " hours ago";}
+                                    }
+                                    else if ($days < 7 && $days > 1){
+                                        if($days == 1){ $message = "Posted " . $days . " day ago on " . $postedDate;
+                                        } else { $message = "Posted " . $days . " days ago on " . $postedDate;}
+                                    }
+                                    else if ($days <= 31 && $days >=7){
+                                        $weeks = round($days / 7);
+                                        if($weeks == 1){ $message = "Posted " . $weeks . " week ago on " . $postedDate;
+                                        } else { $message = "Posted ". $weeks . " weeks ago on " . $postedDate; }
+                                    } ?> <?php
+                                    $commenter = $row2['commenter'];
+                                    $commentText = $row2['commentText']; ?>
+                                    <div class="card d-flex justify-content-center ms-5 mt-2 mb-3">
+                                        <div class="card-body">
+                                            <h6 class="card-title">
+                                                <img src="<?php echo $row2['pic'];?>" alt="profilepic" class="profilepic">
+                                                <a class="linkdecorationrm" href="profile.php?username=<?php echo $commenter?>" target="_blank"><?php echo $commenter?></a> <span class="fs-6 blockquote-footer my-1"><?php echo $message;?></span>
+                                            </h6>
+                                            <p><?=$commentText?></p>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php   } ?>
+                                <?php   } ?>
 
 
 
-                        </div>
+                            </div>
                         </div>
                     <?php } ?>
                 </div>
@@ -373,82 +398,82 @@ $comments = $commentData->fetch_assoc();
                         ?>
 
 
-                            <div class="card m-3 d-flex justify-content-center">
-                                <div class="card-body">
-                                    <h5 class="card-title"><a class="linkdecorationrm" href="profile.php?username=<?=$row["user"];?>" target="_blank"><img src=<?php echo $row['pic'];?> class="profilepic" alt=profile pic></img><?=$row['user'];?></a><span class="fs-6 blockquote-footer my-1"> <?php echo $message;?></span></h5>
-                                    <p><?php echo $row['postText']; ?></p>
-                                </div>
-
-                                <div class="card-footer border-top-0">
-                                    <div class="row">
-                                        <div class="col"><span id="replyiconlisten"><i class="fa-solid fa-reply colorone" id="replyiconin"></i></span> <?php echo ' '. $commentCount;?></div>
-                                        <div class="col"><span id="bottleiconlisten"><i class="fa-solid fa-bottle-water colortwo" id="bottleiconin"></i></span><?php echo ' ' . $row['likeCount'];?></div>
-                                        <div class="col"><span id="dropleticonlisten"><i class="fa-solid fa-droplet colorone" id="dropleticonin"></i></span></div>
-                                    </div>
-                                </div>
-                                <?php if($commentCount > 0){ ?>
-                                    <!-- display the comments on the liked posts -->
-                                    <button class="btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse<?=$postID?>" aria-expanded="false">Show Comments</button>
-
-
-                                <?php } ?>
+                        <div class="card m-3 d-flex justify-content-center">
+                            <div class="card-body">
+                                <h5 class="card-title"><a class="linkdecorationrm" href="profile.php?username=<?=$row["user"];?>" target="_blank"><img src=<?php echo $row['pic'];?> class="profilepic" alt=profile pic></img><?=$row['user'];?></a><span class="fs-6 blockquote-footer my-1"> <?php echo $message;?></span></h5>
+                                <p><?php echo $row['postText']; ?></p>
                             </div>
 
+                            <div class="card-footer border-top-0">
+                                <div class="row">
+                                    <div class="col"><span id="replyiconlisten"><i class="fa-solid fa-reply colorone" id="replyiconin"></i></span> <?php echo ' '. $commentCount;?></div>
+                                    <div class="col"><span id="bottleiconlisten"><i class="fa-solid fa-bottle-water colortwo" id="bottleiconin"></i></span><?php echo ' ' . $row['likeCount'];?></div>
+                                    <div class="col"><span id="dropleticonlisten"><i class="fa-solid fa-droplet colorone" id="dropleticonin"></i></span></div>
+                                </div>
+                            </div>
+                            <?php if($commentCount > 0){ ?>
+                                <!-- display the comments on the liked posts -->
+                                <button class="btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse<?=$postID?>" aria-expanded="false">Show Comments</button>
 
 
-                            <!-- print out comments -->
-                            <div class="multi-collapse<?=$postID?> collapse" style="display:block;">
+                            <?php } ?>
+                        </div>
+
+
+
+                        <!-- print out comments -->
+                        <div class="multi-collapse<?=$postID?> collapse" style="display:block;">
                             <div class="multi-collapse<?=$postID?> collapse">
-                            <?php
-                            $commentDetails = $db->query("SELECT p.postID, c.commenter, c.commentText, c.time, c.date, p.user, p.commentCount, u.pic
+                                <?php
+                                $commentDetails = $db->query("SELECT p.postID, c.commenter, c.commentText, c.time, c.date, p.user, p.commentCount, u.pic
                                     FROM comments c JOIN posts p ON c.postID=p.postID JOIN users u ON u.username=c.commenter WHERE p.postID = '$postID' ORDER BY c.time DESC");
-                            foreach($commentDetails as $row2){
-                                $postedDate = $row2['date'];
+                                foreach($commentDetails as $row2){
+                                    $postedDate = $row2['date'];
 
-                                //get days and weeks
-                                $date = strtotime(date('Y-m-d'));
-                                $postDate = strtotime($postedDate);
-                                $seconds = $date - $postDate;
-                                $days = $seconds / 86400;
-
-
-                                //get hours
-                                $localtime = strtotime(date('h:i:s'));
-                                $postTime = strtotime($row2['time']);
-                                $seconds2 = $localtime - $postTime;
-                                $hours = round(abs($seconds2 / 3600));
+                                    //get days and weeks
+                                    $date = strtotime(date('Y-m-d'));
+                                    $postDate = strtotime($postedDate);
+                                    $seconds = $date - $postDate;
+                                    $days = $seconds / 86400;
 
 
+                                    //get hours
+                                    $localtime = strtotime(date('h:i:s'));
+                                    $postTime = strtotime($row2['time']);
+                                    $seconds2 = $localtime - $postTime;
+                                    $hours = round(abs($seconds2 / 3600));
 
-                                if ($days <= 1 && $hours < 24){
-                                    if($hours <= 1){ $message = "Posted less than an hour ago";
-                                    } else { $message = "Posted " . $hours . " hours ago";}
-                                }
-                                else if ($days < 7 && $days > 1){
-                                    if($days == 1){ $message = "Posted " . $days . " day ago on " . $postedDate;
-                                    } else { $message = "Posted " . $days . " days ago on " . $postedDate;}
-                                }
-                                else if ($days <= 31 && $days >=7){
-                                    $weeks = round($days / 7);
-                                    if($weeks == 1){ $message = "Posted " . $weeks . " week ago on " . $postedDate;
-                                    } else { $message = "Posted ". $weeks . " weeks ago on " . $postedDate; }
-                                }
-                                $commenter = $row2['commenter'];
-                                $commentText = $row2['commentText']; ?>
-                                <div class="card d-flex justify-content-center ms-5 mt-2 mb-3">
-                                    <div class="card-body">
-                                        <h6 class="card-title">
-                                            <img src="<?php echo $row2['pic'];?>" alt="profilepic" class="profilepic">
-                                            <a class="linkdecorationrm" href="profile.php?username=<?php echo $commenter?>" target="_blank"><?php echo $commenter?></a> <span class="fs-6 blockquote-footer my-1"><?php echo $message;?></span>
-                                        </h6>
-                                        <p><?=$commentText?></p>
+
+
+                                    if ($days <= 1 && $hours < 24){
+                                        if($hours <= 1){ $message = "Posted less than an hour ago";
+                                        } else { $message = "Posted " . $hours . " hours ago";}
+                                    }
+                                    else if ($days < 7 && $days > 1){
+                                        if($days == 1){ $message = "Posted " . $days . " day ago on " . $postedDate;
+                                        } else { $message = "Posted " . $days . " days ago on " . $postedDate;}
+                                    }
+                                    else if ($days <= 31 && $days >=7){
+                                        $weeks = round($days / 7);
+                                        if($weeks == 1){ $message = "Posted " . $weeks . " week ago on " . $postedDate;
+                                        } else { $message = "Posted ". $weeks . " weeks ago on " . $postedDate; }
+                                    }
+                                    $commenter = $row2['commenter'];
+                                    $commentText = $row2['commentText']; ?>
+                                    <div class="card d-flex justify-content-center ms-5 mt-2 mb-3">
+                                        <div class="card-body">
+                                            <h6 class="card-title">
+                                                <img src="<?php echo $row2['pic'];?>" alt="profilepic" class="profilepic">
+                                                <a class="linkdecorationrm" href="profile.php?username=<?php echo $commenter?>" target="_blank"><?php echo $commenter?></a> <span class="fs-6 blockquote-footer my-1"><?php echo $message;?></span>
+                                            </h6>
+                                            <p><?=$commentText?></p>
+                                        </div>
                                     </div>
-                                </div>
 
-                            <?php   } ?>
+                                <?php   } ?>
 
                             </div>
-                            </div>
+                        </div>
                     <?php } ?>
                 </div>
             </div>
