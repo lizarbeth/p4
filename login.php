@@ -69,7 +69,7 @@
     <!-- Creates the footer at the bottom of the page -->
     <footer class="container-fluid mt-5 p-3 text-center">
         <h5><strong>Water Fanatics Inc.</strong></h5>
-        <h5><strong><a class="linkdecorationrm" href="wiki/home.php">Like water? Learn more on our Wiki!</a></strong></h5>
+        <h5><strong><a class="linkdecorationrm" href="wiki/index.php">Like water? Learn more on our Wiki!</a></strong></h5>
     </footer>
 
 </body>
