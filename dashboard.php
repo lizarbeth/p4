@@ -43,6 +43,8 @@ $commentDetails = $db->query("SELECT * FROM comments");
 $likedPosts = $db->query("SELECT p.postText,p.user,p.likeCount,p.commentCount,l.liker,u.firstName,u.lastName,u.pic, p.time, p.date, p.postID
                             FROM posts p JOIN likes l ON p.postID=l.postID
                             JOIN users u ON p.user=u.username WHERE liker = '$username'");
+$countLikedPosts = $db->query("SELECT COUNT(*) FROM likes WHERE liker='$username'");
+$countLikes = $countLikedPosts->fetch_column();
 
 // $likes = $db->query("SELECT likeCount FROM posts WHERE postID='21'");
 // $likeCount = $likes->fetch_column();
@@ -142,6 +144,7 @@ $likedPosts = $db->query("SELECT p.postText,p.user,p.likeCount,p.commentCount,l.
                         </a>
 
                         <p class="card-text"><?php if($countPosts == 1){ echo $countPosts . " Post"; } else echo $countPosts . " Posts"; ?></p>
+                        <p class="card-text"><?php echo $countLikes . " Likes"; ?></p>
                     </div>
                 </div>
 
@@ -379,3 +382,4 @@ $likedPosts = $db->query("SELECT p.postText,p.user,p.likeCount,p.commentCount,l.
 
 </body>
 </html>
+
